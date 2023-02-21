@@ -1,15 +1,10 @@
-
 class HW():
 
-    def __init__(self):     # экземпляр класса
+    def __init__(self, nested_list):    
+        self.nested_list = nested_list
         pass
 
     def __iter__(self):
-        self.nested_list = [
-            ['a', 'b', 'c'],
-            ['d', 'e', 'f', 'h', False],
-            [1, 2, None],
-        ]
         self.cursor = 0
         return self
 
@@ -21,7 +16,19 @@ class HW():
                     print(inner_item)
             raise StopIteration
 
+    def series_generator(self):
+        new_list = []
+        while self.cursor != len(self.nested_list):
+            yield item
+            self.cursor += 1
+        for num in self.nested_list:
+            new_list.append(num)
+        return new_list
+
 if __name__ == "__main__":
-    new_hw = HW()
+    new_hw = HW([['a', 'b', 'c'],['d', 'e', 'f', 'h', False],[1, 2, None],])
     for item in new_hw:
         print(item)
+
+# flat_list = [item for item in FlatIterator(nested_list)]
+
