@@ -1,3 +1,4 @@
+# 1.
 class HW():
 
     def __init__(self, nested_list):    
@@ -31,4 +32,22 @@ if __name__ == "__main__":
         print(item)
 
 # flat_list = [item for item in FlatIterator(nested_list)]
+def hello_world(n):
+    for i in n:
+        for b in i:
+            yield b
+
+for item in hello_world(n=[
+            ['a', 'b', 'c'],
+            ['d', 'e', 'f', 'h', False],
+            [1, 2, None],
+        ]):
+    print(item)
+
+n = [
+            ['a', 'b', 'c'],
+            ['d', 'e', 'f', 'h', False],
+            [1, 2, None],
+        ]
+hello_world_generator = hello_world(n)
 
