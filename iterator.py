@@ -9,7 +9,6 @@ class FlatIterator:
         self.outer_list_cursor = 0 #внешний основной
         self.inner_list_cursor = 1 #вложенный
         return self
-        return self
 
     def __next__(self):
         while self.outer_list_cursor < len(self.list_of_list):
