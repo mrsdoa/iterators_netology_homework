@@ -23,6 +23,7 @@ class FlatIterator:
                         self.flatlist.append(element)
                         self.inner_list_cursor += 1  
             return self.flatlist[ind1][ind2]
+            return self.flatlist[self.outer_list_cursor][self.inner_list_cursor]
         else:
             raise StopIteration
  
