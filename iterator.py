@@ -14,15 +14,15 @@ class FlatIterator:
     # defining an empty list 
     # Iterating through the outer list
         if self.outer_list_cursor < len(self.list_of_list):
-            for item in self.list_of_list: 
+            for ind1, item in enumerate(self.list_of_list): 
                 self.outer_list_cursor += 1
                 if type(item) is list:
                     self.inner_list_cursor = 0 
                     # If the item is of the list type, iterating through the sub-list 
-                    for element in item: 
+                    for ind2, element in enumerate(item): 
                         self.flatlist.append(element)
                         self.inner_list_cursor += 1  
-            return self.flatlist
+            return self.flatlist[ind1][ind2]
         else:
             raise StopIteration
  
