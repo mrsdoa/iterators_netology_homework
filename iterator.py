@@ -10,15 +10,30 @@ class FlatIterator:
         self.inner_list_cursor = 1 #вложенный
         return self
 
-    def __next__(self):
-        while self.outer_list_cursor <= len(self.list_of_list):
-            for item in self.list_of_list:
+    def __next__(self):      
+    # defining an empty list 
+    # Iterating through the outer list
+        if self.outer_list_cursor < len(self.list_of_list):
+            for item in self.list_of_list: 
                 self.outer_list_cursor += 1
-                self.inner_list_cursor = 0
-                for inner_item in item:
-                    self.inner_list_cursor += 1
-            return self.list_of_list[self.outer_list_cursor][self.inner_list_cursor]
-        raise StopIteration
+                if type(item) is list:
+                    self.inner_list_cursor = 0 
+                    # If the item is of the list type, iterating through the sub-list 
+                    for element in item: 
+                        self.flatlist.append(element)
+                        self.inner_list_cursor += 1  
+            return self.flatlist
+        else:
+            raise StopIteration
+ 
+#         while self.outer_list_cursor <= len(self.list_of_list):
+#             for item in self.list_of_list:
+#                 self.outer_list_cursor += 1
+#                 self.inner_list_cursor = 0
+#                 for inner_item in item:
+#                     self.inner_list_cursor += 1
+#             return self.list_of_list[self.outer_list_cursor][self.inner_list_cursor]
+#         raise StopIteration
 
 def test_1():
 
