@@ -11,7 +11,7 @@ class FlatIterator:
         return self
 
     def __next__(self):
-        while self.outer_list_cursor < len(self.list_of_list):
+        while self.outer_list_cursor <= len(self.list_of_list):
             for item in self.list_of_list:
                 self.outer_list_cursor += 1
                 self.inner_list_cursor = 0
