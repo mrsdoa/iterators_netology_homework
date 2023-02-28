@@ -17,15 +17,8 @@ class FlatIterator:
                 self.inner_list_cursor = 0
                 for inner_item in item:
                     self.inner_list_cursor += 1
-                #self.list_of_list.pop(0)
-        StopIteration
-        return self.list_of_list[self.outer_list_cursor][self.inner_list_cursor]
-    
-#         if self.cursor is len(self.list_of_list):
-#             raise StopIteration
-#         else:
-#             self.cursor += 1
-#             return iter(self.list_of_list[self.cursor])
+            return self.list_of_list[self.outer_list_cursor][self.inner_list_cursor]
+        raise StopIteration
 
 def test_1():
 
@@ -63,12 +56,6 @@ def flat_generator(list_of_lists, ignore_types=(str, bytes)):
             yield from x
         else:
             yield
-
-    # for row in iterables:
-    #     for i in row:
-    #         yield i
-
-
 
 def test_2():
 
