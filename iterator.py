@@ -6,8 +6,8 @@ class FlatIterator:
 
     def __iter__(self):
 #         self.cursor = -1
-        self.outer_list_cursor = 0 #внешний основной
-        self.inner_list_cursor = 1 #вложенный
+        self.outer_list_cursor = -1 #внешний основной
+        self.inner_list_cursor = -1 #вложенный
         return self
 
     def __next__(self):      
