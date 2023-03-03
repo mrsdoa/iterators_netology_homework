@@ -3,38 +3,22 @@ class FlatIterator:
 
     def __init__(self, list_of_list):
         self.list_of_list = list_of_list
+        self.len_ = len(self.list_of_list)
+        self.outer_list_cursor = -1
 
     def __iter__(self):
-#         self.cursor = -1
-        self.outer_list_cursor = -1 #внешний основной
-        self.inner_list_cursor = -1 #вложенный
+        self.outer_list_cursor += 1 #внешний основной
+        self.inner_list_cursor = 0 #вложенный 
         return self
 
-    def __next__(self):      
-    # defining an empty list 
-    # Iterating through the outer list
-        if self.outer_list_cursor < len(self.list_of_list):
-            for ind1, item in enumerate(self.list_of_list): 
-                self.outer_list_cursor += 1
-                if type(item) is list:
-                    self.inner_list_cursor = 0 
-                    # If the item is of the list type, iterating through the sub-list 
-                    for ind2, element in enumerate(item): 
-                        self.flatlist.append(element)
-                        self.inner_list_cursor += 1  
-            return self.flatlist[ind1][ind2]
-#             return self.flatlist[self.outer_list_cursor][self.inner_list_cursor]
-        else:
+    def __next__(self):
+        if self.inner_list_cursor == len(self.list_of_list[self.outer_list_cursor]):
+            iter(self)
+        if self.outer_list_cursor == self.len_:
             raise StopIteration
- 
-#         while self.outer_list_cursor <= len(self.list_of_list):
-#             for item in self.list_of_list:
-#                 self.outer_list_cursor += 1
-#                 self.inner_list_cursor = 0
-#                 for inner_item in item:
-#                     self.inner_list_cursor += 1
-#             return self.list_of_list[self.outer_list_cursor][self.inner_list_cursor]
-#         raise StopIteration
+        self.inner_list_cursor += 1
+        return self.list_of_list[self.outer_list_cursor][self.inner_list_cursor-1]
+
 
 def test_1():
 
@@ -56,9 +40,9 @@ def test_1():
 
 if __name__ == '__main__':
     new_hw = FlatIterator([['a', 'b', 'c'], ['d', 'e', 'f', 'h', False], [1, 2, None], ])
-    for row in new_hw:
-        for x in row:
-            print(x)
+    # print(new_hw)
+    for x in new_hw:
+        print(x)
     test_1()
 
 # 2.
